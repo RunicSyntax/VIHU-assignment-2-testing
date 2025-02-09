@@ -9,10 +9,17 @@ describe("Date Utils", () => {
     expect(getCurrentYear()).toBe(currentYear);
   })
 
-  test("add", () => {
+  test("add day", () => {
     const sampleDate = new Date(2003, 2, 4);
     const expectedData = new Date(2003, 2, 5);
     const resultData = add(sampleDate, 1);
+    expect(resultData.getDate()).toBe(expectedData.getDate());
+  })
+
+  test("add month", () => {
+    const sampleDate = new Date(2003, 2, 5);
+    const expectedData = new Date(2003, 3, 5);
+    const resultData = add(sampleDate, 1, DATE_UNIT_TYPES.MONTHS);
     expect(resultData.getDate()).toBe(expectedData.getDate());
   })
 
