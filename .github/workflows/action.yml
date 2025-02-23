@@ -27,6 +27,9 @@ jobs:
       - name: Run the test suite
         run: npm run test
 
+      - name: Fix format with prettier
+        run: npx prettier --write .
+
       - name: Check Prettier formatting
         run: npx prettier --check .
 
