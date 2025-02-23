@@ -27,14 +27,14 @@ describe("Date Utils", () => {
     const beforeDate = new Date(2018, 8, 20);
     const inRangeDate = new Date(2019, 2, 13);
     const afterDate = new Date(2020, 1, 10);
-    expect(isWithinRange(inRangeDate, beforeDate, afterDate)).toBeTruthy();
+    expect(isWithinRange(inRangeDate, beforeDate, afterDate.toISOString())).toBeTruthy();
   })
 
   test("is not within range", () => {
     const beforeDate = new Date(2018, 8, 20);
     const inRangeDate = new Date(2022, 2, 13);
     const afterDate = new Date(2020, 1, 10);
-    expect(isWithinRange(inRangeDate, beforeDate, afterDate)).toBeFalsy();
+    expect(isWithinRange(inRangeDate, beforeDate, afterDate.toISOString())).toBeFalsy();
   })
 
   test("is date before", () => {
