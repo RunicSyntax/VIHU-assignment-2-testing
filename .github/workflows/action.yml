@@ -1,4 +1,4 @@
-name : Action Workflow
+name: Action Workflow
 
 on: [push]
 
@@ -10,6 +10,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@runicsyntax'
+          always-auth: true
+
       - name: Install dependencies
         run: npm install
 
@@ -18,3 +26,14 @@ jobs:
 
       - name: Run the test suite
         run: npm run test
+
+      - name: Check Prettier formatting
+        run: npx prettier --check .
+
+      - name: Run ESLint
+        run: npx eslint .
+
+      - name: Publish Package
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
